@@ -26,14 +26,16 @@ export const App = () => {
             const resp = await data.json();
             return await getFormatingArray(resp);
           }
-        } catch (error) {
+        } catch ({ error }) {
           setError(error);
         }
       }
     };
     fetchCard();
   }, [trigger]);
+  console.log(error);
 
+  console.log(setTrigger);
   const getFormatingArray = resp => {
     if (resp) {
       const { results } = resp;

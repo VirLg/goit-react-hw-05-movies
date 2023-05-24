@@ -3,10 +3,10 @@ import { useState } from 'react';
 const SearchForm = () => {
   const [value, setValue] = useState('');
 
-  const heandleChange = ({ target }) => {
-    const { value } = target;
-    setValue(value);
-  };
+  //   const heandleChange = ({ target }) => {
+  //     const { value } = target;
+  //     setValue(value);
+  //   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
