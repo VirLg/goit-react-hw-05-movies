@@ -1,3 +1,14 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+Api key
+d0d7894e72847cf4bdccbd92204adc61
+
+
+Base url
+https://api.themoviedb.org/3/movie/550?api_key=d0d7894e72847cf4bdccbd92204adc61
+
+токен для доступу
+
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMGQ3ODk0ZTcyODQ3Y2Y0YmRjY2JkOTIyMDRhZGM2MSIsInN1YiI6IjY0NmU0NzM4ODk0ZWQ2MDExNjM3NTUwYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cdr_WY00wFw8b1pFMw00Fc96S4aC_xhxwrF-CfoKrHw
