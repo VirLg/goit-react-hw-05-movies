@@ -1,17 +1,20 @@
 import { useContext } from 'react';
-import { RenderContext } from 'components/App';
+import { Link } from 'react-router-dom';
+import { RenderContext } from '../pages/Movies';
 
 const ItemCard = () => {
   const result = useContext(RenderContext);
-  console.log(result);
+
   return (
     <ul>
       {result &&
-        result.map(({ original_title, id }) => (
-          <li key={id}>
-            <p>{original_title}</p>
-          </li>
-        ))}
+        result.map(({ original_title, id, title }) => {
+          return (
+            <li key={id}>
+              <Link to={`${id}`}>{original_title}</Link>
+            </li>
+          );
+        })}
     </ul>
   );
 };
