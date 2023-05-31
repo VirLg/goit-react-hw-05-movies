@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { RenderContext } from '../pages/Movies';
+import { RenderContext } from '../../pages/Movies';
 
 const ItemCard = () => {
   const result = useContext(RenderContext);
