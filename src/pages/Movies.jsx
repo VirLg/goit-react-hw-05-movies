@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContext, useState, useEffect } from 'react';
 import ItemCard from '../components/ItemCard/ItemCard';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 export const RenderContext = createContext();
 
 const Movies = () => {
@@ -64,10 +64,25 @@ const Movies = () => {
       setFilmList(stateArr);
     }
   };
+  const [searchParams, setSearchParams] = useSearchParams();
+  const updateInput = evt => {
+    // console.log(evt.target.value);
+    if (evt.target.value === '') {
+      return setSearchParams({});
+    }
+    setSearchParams({ movieId: evt.target.value });
+  };
+  const movieId = searchParams.get('movieId') ?? '';
+
   return (
     <div>
-      <RenderContext.Provider value={filmList}>
-        <input type="text" />
+      <RenderContext.Provider
+        value={{
+          filmList,
+          movieId,
+        }}
+      >
+        <input type="text" onChange={updateInput} />
         <ItemCard />
       </RenderContext.Provider>
     </div>

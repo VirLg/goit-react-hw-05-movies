@@ -1,14 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { Loyaut } from './Layout.styled';
+import { Loyaut, Nav } from './Layout.styled';
 const Layout = () => {
   return (
     <Loyaut>
-      <nav>
+      <Nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/movies">Movies</NavLink>
-      </nav>
+      </Nav>
       <main>
         <Outlet />
       </main>
