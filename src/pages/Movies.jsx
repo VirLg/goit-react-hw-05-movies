@@ -30,7 +30,6 @@ const Movies = data => {
   // }
   //   }
   const getFormatingArray = resp => {
-    console.log(resp);
     const { results } = resp;
     if (results) {
       const stateArr = results.map(

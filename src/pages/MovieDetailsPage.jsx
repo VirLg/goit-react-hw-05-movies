@@ -12,7 +12,12 @@ const MovieDetailsPage = props => {
   useEffect(() => {
     FetchCard(`movie/${movieId}`)
       .then(data => data.json())
-      .then(resp => setItem(resp));
+      .then(resp =>
+        setItem({
+          poster_path: `${resp.poster_path.substring(1)}`,
+          original_title: `${resp.original_title}`,
+        })
+      );
   }, [movieId]);
 
   return (

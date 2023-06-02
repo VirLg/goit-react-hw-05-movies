@@ -9,7 +9,7 @@ const ItemCard = () => {
   const visibleFilm = filmList.filter(({ original_title = 'null' }) =>
     original_title.toLowerCase().includes(movieId.toLowerCase())
   );
-  console.log(visibleFilm);
+
   return (
     <ul>
       {visibleFilm.map(({ original_title = 'null', id, title }) => {
