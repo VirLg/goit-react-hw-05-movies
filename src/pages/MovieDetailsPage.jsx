@@ -2,29 +2,17 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { createContext, useState, useEffect } from 'react';
-
+import FetchCard from 'components/Api/Api';
 export const RenderContext = createContext();
 
 const MovieDetailsPage = props => {
   const [item, setItem] = useState({});
   const { movieId } = useParams();
 
-  // setMovieItemId(params.movieId);
-  // console.log(params.movieId);
-
   useEffect(() => {
-    const options = { method: 'GET', headers: { accept: 'application/json' } };
-    const fetchOnlyCard = () => {
-      fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=d0d7894e72847cf4bdccbd92204adc61&language=en-US`,
-        options
-      )
-        .then(response => response.json())
-        .then(response => setItem(response))
-        .catch(err => console.error(err));
-    };
-
-    fetchOnlyCard();
+    FetchCard(`movie/${movieId}`)
+      .then(data => data.json())
+      .then(resp => setItem(resp));
   }, [movieId]);
 
   return (
@@ -45,5 +33,3 @@ const MovieDetailsPage = props => {
   );
 };
 export default MovieDetailsPage;
-
-/* */

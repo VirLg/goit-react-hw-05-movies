@@ -8,18 +8,13 @@ export const RenderContext = createContext();
 
 const Movies = data => {
   const [filmList, setFilmList] = useState([]);
-  // // const BASE_URL = 'https://api.themoviedb.org/3/movie/550?';
-  // // const API_KEY = 'd0d7894e72847cf4bdccbd92204adc61';
-  // // const ENDPOINT = 'trending/all/{time_window}';
-
   const [error, setError] = useState(null);
-
   useEffect(() => {
-    FetchCard(data)
+    FetchCard(`trending/all/day`)
       .then(data => data.json())
-      .then(resp => getFormatingArray(resp));
+      .then(resp => getFormatingArray(resp))
+      .catch(error => setError(error.message));
   }, [data]);
-
   // try {
   //   api.then(promise => promise.json()).then(data =>{
   //       if (data.status !== 200) {
@@ -34,7 +29,6 @@ const Movies = data => {
   //   console.log(error.message);
   // }
   //   }
-
   const getFormatingArray = resp => {
     console.log(resp);
     const { results } = resp;
@@ -74,10 +68,9 @@ const Movies = data => {
     setSearchParams({ movieId: evt.target.value });
   };
   const movieId = searchParams.get('movieId') ?? '';
-
   return (
     <div>
-      {error && <h1>404</h1>}
+      {error && <h1>{error}</h1>}
       <RenderContext.Provider
         value={{
           filmList,

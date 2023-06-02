@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+// import { RenderContext } from '../../pages/HomePage';
 import { RenderContext } from '../../pages/Movies';
-
 const ItemCard = () => {
   const { filmList } = useContext(RenderContext);
   const { movieId } = useContext(RenderContext);

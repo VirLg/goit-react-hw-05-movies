@@ -1,12 +1,13 @@
-const FetchCard = async () => {
+const FetchCard = async props => {
   const data = await fetch(
-    'https://api.themoviedb.org/3/trending/all/day?api_key=d0d7894e72847cf4bdccbd92204adc61'
+    `https://api.themoviedb.org/3/${props}?api_key=d0d7894e72847cf4bdccbd92204adc61`
   );
-  console.log(data);
+  console.log(props);
   return data;
 };
 
 export default FetchCard;
+// `https://api.themoviedb.org/3/movie/${movieId}?api_key=d0d7894e72847cf4bdccbd92204adc61&language=en-US`
 
 // const FetchCard = async () => {
 //   const [error, setError] = useState(null);
