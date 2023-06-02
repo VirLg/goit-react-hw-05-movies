@@ -2,41 +2,43 @@ import React from 'react';
 import { createContext, useState, useEffect } from 'react';
 import ItemCard from '../components/ItemCard/ItemCard';
 import { useParams, useSearchParams } from 'react-router-dom';
+import FetchCard from '../components/Api/Api';
+
 export const RenderContext = createContext();
 
-const Movies = () => {
+const Movies = data => {
   const [filmList, setFilmList] = useState([]);
   // // const BASE_URL = 'https://api.themoviedb.org/3/movie/550?';
   // // const API_KEY = 'd0d7894e72847cf4bdccbd92204adc61';
   // // const ENDPOINT = 'trending/all/{time_window}';
-  const [trigger, setTrigger] = useState(true);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCard = async () => {
-      if (trigger) {
-        try {
-          const data = await fetch(
-            'https://api.themoviedb.org/3/trending/all/day?api_key=d0d7894e72847cf4bdccbd92204adc61'
-          );
-          if (data.status !== 200) {
-            return Promise.reject(new Error('Search is empty'));
-          } else {
-            const resp = await data.json();
-            return await getFormatingArray(resp);
-          }
-        } catch ({ error }) {
-          setError(error);
-        }
-      }
-    };
-    fetchCard();
-  }, [trigger]);
+    FetchCard(data)
+      .then(data => data.json())
+      .then(resp => getFormatingArray(resp));
+  }, [data]);
+
+  // try {
+  //   api.then(promise => promise.json()).then(data =>{
+  //       if (data.status !== 200) {
+  //     console.log('????????');
+  //     return Promise.reject(new Error('Search is empty'));
+  //   } else {
+  //     const resp = data;
+  //     getFormatingArray(resp);
+  //     return resp;
+  //   }
+  // } catch (error) {
+  //   console.log(error.message);
+  // }
+  //   }
 
   const getFormatingArray = resp => {
+    console.log(resp);
     const { results } = resp;
-
-    if (results !== undefined) {
+    if (results) {
       const stateArr = results.map(
         ({
           backdrop_path,
@@ -66,7 +68,6 @@ const Movies = () => {
   };
   const [searchParams, setSearchParams] = useSearchParams();
   const updateInput = evt => {
-    // console.log(evt.target.value);
     if (evt.target.value === '') {
       return setSearchParams({});
     }
@@ -76,6 +77,7 @@ const Movies = () => {
 
   return (
     <div>
+      {error && <h1>404</h1>}
       <RenderContext.Provider
         value={{
           filmList,
@@ -92,3 +94,20 @@ const Movies = () => {
 export default Movies;
 
 /*  */
+// const fetchCard = async () => {
+//   if (trigger) {
+//     try {
+//       const data = await fetch(
+//         'https://api.themoviedb.org/3/trending/all/day?api_key=d0d7894e72847cf4bdccbd92204adc61'
+//       );
+//       if (data.status !== 200) {
+//         return Promise.reject(new Error('Search is empty'));
+//       } else {
+//         const resp = await data.json();
+//         return await getFormatingArray(resp);
+//       }
+//     } catch (error) {
+//       setError(error.message);
+//     }
+//   }
+// };

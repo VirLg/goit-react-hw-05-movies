@@ -1,4 +1,12 @@
-// import { useState } from 'react';
+const FetchCard = async () => {
+  const data = await fetch(
+    'https://api.themoviedb.org/3/trending/all/day?api_key=d0d7894e72847cf4bdccbd92204adc61'
+  );
+  console.log(data);
+  return data;
+};
+
+export default FetchCard;
 
 // const FetchCard = async () => {
 //   const [error, setError] = useState(null);
