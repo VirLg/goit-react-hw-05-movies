@@ -14,7 +14,7 @@ const MovieDetailsPage = props => {
       .then(data => data.json())
       .then(resp =>
         setItem({
-          poster_path: `${resp.poster_path.substring(1)}`,
+          poster_path: `https://image.tmdb.org/t/p/w500${resp.poster_path}`,
           original_title: `${resp.original_title}`,
         })
       );

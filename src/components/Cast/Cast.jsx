@@ -17,7 +17,7 @@ const Cast = () => {
   const render = useMemo(() => {
     return cast.map(({ profile_path, name, id }) => {
       return {
-        profile_path: `${profile_path && profile_path.substring(1)}`,
+        profile_path: `https://image.tmdb.org/t/p/w500${profile_path}??''`,
         name,
         id,
       };

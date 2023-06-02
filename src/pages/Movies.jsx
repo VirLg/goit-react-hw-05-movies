@@ -9,56 +9,14 @@ export const RenderContext = createContext();
 const Movies = data => {
   const [filmList, setFilmList] = useState([]);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState('');
   useEffect(() => {
-    FetchCard(`trending/all/day`)
+    FetchCard(`search/movie`)
       .then(data => data.json())
-      .then(resp => getFormatingArray(resp))
+      .then(resp => setSearch(resp))
       .catch(error => setError(error.message));
   }, [data]);
-  // try {
-  //   api.then(promise => promise.json()).then(data =>{
-  //       if (data.status !== 200) {
-  //     console.log('????????');
-  //     return Promise.reject(new Error('Search is empty'));
-  //   } else {
-  //     const resp = data;
-  //     getFormatingArray(resp);
-  //     return resp;
-  //   }
-  // } catch (error) {
-  //   console.log(error.message);
-  // }
-  //   }
-  const getFormatingArray = resp => {
-    const { results } = resp;
-    if (results) {
-      const stateArr = results.map(
-        ({
-          backdrop_path,
-          genre_ids,
-          id,
-          media_type,
-          original_title,
-          overview,
-          poster_path,
-          title,
-        }) => {
-          return {
-            backdrop_path,
-            genre_ids,
-            id,
-            media_type,
-            original_title,
-            overview,
-            poster_path,
-            title,
-          };
-        }
-      );
-      console.log(stateArr);
-      setFilmList(stateArr);
-    }
-  };
+
   const [searchParams, setSearchParams] = useSearchParams();
   const updateInput = evt => {
     if (evt.target.value === '') {
@@ -77,7 +35,6 @@ const Movies = data => {
         }}
       >
         <input type="text" onChange={updateInput} />
-        <ItemCard />
       </RenderContext.Provider>
     </div>
   );

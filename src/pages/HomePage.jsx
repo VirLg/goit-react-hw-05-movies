@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContext, useState, useEffect } from 'react';
 import ItemCard from '../components/ItemCard/ItemCard';
-import { useParams, useSearchParams } from 'react-router-dom';
+
 import FetchCard from '../components/Api/Api';
 
 export const RenderContext = createContext();
@@ -17,21 +17,6 @@ const HomePage = data => {
       .then(resp => getFormatingArray(resp))
       .catch(error => setError(error.message));
   }, [data]);
-
-  // try {
-  //   api.then(promise => promise.json()).then(data =>{
-  //       if (data.status !== 200) {
-  //     console.log('????????');
-  //     return Promise.reject(new Error('Search is empty'));
-  //   } else {
-  //     const resp = data;
-  //     getFormatingArray(resp);
-  //     return resp;
-  //   }
-  // } catch (error) {
-  //   console.log(error.message);
-  // }
-  //   }
 
   const getFormatingArray = resp => {
     console.log(resp);
@@ -64,14 +49,6 @@ const HomePage = data => {
       setFilmList(stateArr);
     }
   };
-  const [searchParams, setSearchParams] = useSearchParams();
-  const updateInput = evt => {
-    if (evt.target.value === '') {
-      return setSearchParams({});
-    }
-    setSearchParams({ movieId: evt.target.value });
-  };
-  const movieId = searchParams.get('movieId') ?? '';
 
   return (
     <div>
@@ -79,10 +56,8 @@ const HomePage = data => {
       <RenderContext.Provider
         value={{
           filmList,
-          movieId,
         }}
       >
-        <input type="text" onChange={updateInput} />
         <ItemCard />
       </RenderContext.Provider>
     </div>
@@ -90,6 +65,19 @@ const HomePage = data => {
 };
 
 export default HomePage;
+
+{
+  /* <input type="text" onChange={updateInput} />
+const [searchParams, setSearchParams] = useSearchParams();
+  const updateInput = evt => {
+    if (evt.target.value === '') {
+      return setSearchParams({});
+    }
+    setSearchParams({ movieId: evt.target.value });
+  };
+  const movieId = searchParams.get('movieId') ?? ''; */
+}
+// ========================================
 
 /*  */
 // const fetchCard = async () => {
