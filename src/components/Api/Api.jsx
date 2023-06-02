@@ -7,6 +7,7 @@ const FetchCard = async props => {
 };
 
 export default FetchCard;
+
 // `https://api.themoviedb.org/3/movie/${movieId}?api_key=d0d7894e72847cf4bdccbd92204adc61&language=en-US`
 
 // const FetchCard = async () => {

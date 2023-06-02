@@ -6,14 +6,14 @@ const Cast = () => {
   const [error, setError] = useState('');
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
-  const [murkup, setMurkup] = useState([]);
+
   useEffect(() => {
     FetchCard(`movie/${movieId}/credits`)
       .then(data => data.json())
       .then(resp => setCast(resp.cast))
       .catch(error => setError(error.message));
   }, [movieId]);
-
+  console.log(cast);
   const render = useMemo(() => {
     return cast.map(({ profile_path, name, id }) => {
       return {
