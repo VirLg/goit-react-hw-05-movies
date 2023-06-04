@@ -1,4 +1,3 @@
-import MovieDetailsPage from 'pages/MovieDetailsPage';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';

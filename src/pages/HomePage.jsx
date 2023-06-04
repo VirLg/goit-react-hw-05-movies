@@ -1,10 +1,7 @@
 import React from 'react';
-import { createContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ItemCard from '../components/ItemCard/ItemCard';
-
 import FetchCard from '../components/Api/Api';
-
-export const RenderContext = createContext();
 
 const HomePage = data => {
   const [filmList, setFilmList] = useState([]);
@@ -45,7 +42,7 @@ const HomePage = data => {
           };
         }
       );
-      console.log(stateArr);
+
       setFilmList(stateArr);
     }
   };
@@ -53,7 +50,6 @@ const HomePage = data => {
   return (
     <div>
       {error && <h1>{error}</h1>}
-
       <ItemCard arr={filmList} />
     </div>
   );
