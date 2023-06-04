@@ -1,10 +1,9 @@
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import FetchSearchCard from 'components/Api/ApiSearch';
-import { createContext, useState } from 'react';
-import ItemCard from 'components/ItemCard/ItemCard';
-export const RenderContext = createContext();
+import { useState } from 'react';
+import ItemSearchCard from 'components/ItemCard/ItemSearchCard';
+
 const Movies = () => {
-  const [value, setValue] = useState('');
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,9 +23,10 @@ const Movies = () => {
       .then(resp => setSearch(resp.results))
       .catch(error => setError(error.message));
   };
-  console.log(search);
+
   return (
     <>
+      {error && <h1>{error}</h1>}
       <form className="form" onSubmit={handleSubmit}>
         <button type="submit" className="button">
           <span className="button-label">Search</span>
@@ -39,23 +39,10 @@ const Movies = () => {
           onChange={updateInput}
         />
       </form>
-      <ItemCard arr={search} />
+      <ItemSearchCard arr={search} />
     </>
   );
 };
-
-{
-  /* <ul>
-{search &&
-  search.map(({ original_title, id }) => {
-    return (
-      <li key={id}>
-        <Link>{original_title}</Link>
-      </li>
-    );
-  })}
-</ul> */
-}
 
 // import React from 'react';
 // import { createContext, useState, useEffect, useCallback } from 'react';
