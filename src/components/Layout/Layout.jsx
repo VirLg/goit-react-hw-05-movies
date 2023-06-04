@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { Loyaut, Nav } from './Layout.styled';
+import { Loyaut, Nav, A } from './Layout.styled';
 const Layout = () => {
   return (
     <Loyaut>

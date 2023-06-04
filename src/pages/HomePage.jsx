@@ -5,7 +5,6 @@ import FetchCard from '../components/Api/Api';
 
 const HomePage = data => {
   const [filmList, setFilmList] = useState([]);
-
   const [error, setError] = useState(null);
 
   useEffect(() => {

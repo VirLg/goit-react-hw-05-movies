@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { createContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import FetchCard from 'components/Api/Api';
-export const RenderContext = createContext();
+import { ImgCard } from './MoviDetailsPage.styled';
 
 const MovieDetailsPage = props => {
   const [item, setItem] = useState({});
@@ -23,7 +23,11 @@ const MovieDetailsPage = props => {
   return (
     <div>
       <h1>{item.original_title}</h1>
-      <img src={item.poster_path} alt={item.original_title} />
+      <ImgCard
+        className="img__card"
+        src={item.poster_path}
+        alt={item.original_title}
+      />
       <h2>{item.vote_count}</h2>
       <ul>
         <li>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import FetchCard from 'components/Api/Api';
+import { ImgCast } from './Cast.styled';
 const Cast = () => {
   const [error, setError] = useState('');
   const [cast, setCast] = useState([]);
@@ -28,7 +29,7 @@ const Cast = () => {
     return (
       <ul key={id}>
         <li>
-          <img src={profile_path} alt={name} />
+          <ImgCast src={profile_path} alt={name} />
         </li>
 
         <li>{name}</li>
