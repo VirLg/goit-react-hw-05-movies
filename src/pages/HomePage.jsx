@@ -53,13 +53,8 @@ const HomePage = data => {
   return (
     <div>
       {error && <h1>{error}</h1>}
-      <RenderContext.Provider
-        value={{
-          filmList,
-        }}
-      >
-        <ItemCard />
-      </RenderContext.Provider>
+
+      <ItemCard arr={filmList} />
     </div>
   );
 };

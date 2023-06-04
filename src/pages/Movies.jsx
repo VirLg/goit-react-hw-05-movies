@@ -1,6 +1,8 @@
-import { useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import FetchSearchCard from 'components/Api/ApiSearch';
+import { createContext, useState } from 'react';
+import ItemCard from 'components/ItemCard/ItemCard';
+export const RenderContext = createContext();
 const Movies = () => {
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
@@ -37,19 +39,23 @@ const Movies = () => {
           onChange={updateInput}
         />
       </form>
-      <ul>
-        {search &&
-          search.map(({ original_title, id }) => {
-            return (
-              <li key={id}>
-                <Link>{original_title}</Link>
-              </li>
-            );
-          })}
-      </ul>
+      <ItemCard arr={search} />
     </>
   );
 };
+
+{
+  /* <ul>
+{search &&
+  search.map(({ original_title, id }) => {
+    return (
+      <li key={id}>
+        <Link>{original_title}</Link>
+      </li>
+    );
+  })}
+</ul> */
+}
 
 // import React from 'react';
 // import { createContext, useState, useEffect, useCallback } from 'react';
