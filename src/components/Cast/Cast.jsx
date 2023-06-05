@@ -14,7 +14,7 @@ const Cast = () => {
       .then(resp => setCast(resp.cast))
       .catch(error => setError(error.message));
   }, [movieId]);
-  console.log(location);
+
   const render = useMemo(() => {
     return cast.map(({ profile_path, name, id }) => {
       return {

@@ -10,7 +10,7 @@ const MovieDetailsPage = props => {
   const [item, setItem] = useState({});
   const { movieId } = useParams();
   const location = useLocation();
-  console.log(location);
+
   useEffect(() => {
     FetchCard(`movie/${movieId}`)
       .then(data => data.json())
@@ -18,6 +18,10 @@ const MovieDetailsPage = props => {
         setItem({
           poster_path: `https://image.tmdb.org/t/p/w500${resp.poster_path}`,
           original_title: `${resp.original_title}`,
+          overview: `${resp.overview}`,
+          release_date: `${resp.release_date}`,
+          genres: `${resp.genres.map(({ name }) => [name])}`,
+          popularity: `${Math.floor(resp.popularity * 0.01)}%`,
         })
       );
   }, [movieId]);
@@ -34,6 +38,10 @@ const MovieDetailsPage = props => {
         alt={item.original_title}
       />
       <h2>{item.vote_count}</h2>
+      <h3>{item.overview}</h3>
+      <h3>{item.release_date}</h3>
+      <p>{item.genres}</p>
+      <p>{item.popularity}</p>
       <ul>
         <li>
           <Link to="cast" state={{ from: location.state.from }}>

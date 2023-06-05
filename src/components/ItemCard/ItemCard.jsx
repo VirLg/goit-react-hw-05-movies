@@ -2,11 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 
 const ItemCard = ({ arr }) => {
   const location = useLocation();
-  console.log(location);
+  console.log(arr);
   return (
     <ul>
       {arr &&
-        arr.map(({ original_title = 'null', id, title }) => (
+        arr.map(({ original_title = 'null', id, title, overview }) => (
           <li key={id}>
             <Link to={`movies/${id}`} state={{ from: location }}>
               {original_title}

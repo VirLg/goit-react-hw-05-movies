@@ -1,3 +1,4 @@
+import ItemCard from 'components/ItemCard/ItemCard';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -10,11 +11,22 @@ const Reviews = () => {
   useEffect(() => {
     FetchCard(`movie/${movieId}/reviews`)
       .then(data => data.json())
-      .then(resp => setReviews(resp))
+      .then(resp =>
+        setReviews({
+          autor: `${resp.results.map(el => console.log(el))}`,
+        })
+      )
       .catch(error => setError(error.message));
   }, [movieId]);
   console.log(reviews);
-  return <div>Reviews</div>;
+  return (
+    <div>
+      <ul>
+        <li>{reviews.author}</li>
+        <li>{reviews.id}</li>
+      </ul>
+    </div>
+  );
 };
 
 export default Reviews;
