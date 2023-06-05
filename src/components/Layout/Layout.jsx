@@ -1,8 +1,9 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Loyaut, Nav, A } from './Layout.styled';
 const Layout = () => {
+  const location = useLocation();
   return (
     <Loyaut>
       <Nav>

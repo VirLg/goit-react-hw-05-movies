@@ -23,7 +23,9 @@ const MovieDetailsPage = props => {
 
   return (
     <div>
-      <Link to={location.state.from}>Back to</Link>
+      <Link to={location.state?.from} state={location}>
+        Go back
+      </Link>
       <h1>{item.original_title}</h1>
       <ImgCard
         className="img__card"
@@ -33,10 +35,14 @@ const MovieDetailsPage = props => {
       <h2>{item.vote_count}</h2>
       <ul>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link to="cast" state={{ from: location.state.from }}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Gallery</Link>
+          <Link to="reviews" state={{ from: location.state.from }}>
+            Gallery
+          </Link>
         </li>
       </ul>
       <Outlet />
