@@ -1,4 +1,5 @@
 import React from 'react';
+import { Suspense } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -23,7 +24,7 @@ const MovieDetailsPage = props => {
 
   return (
     <div>
-      <Link to={location.state?.from} state={location}>
+      <Link to={location.state?.from ?? '/'} state={location}>
         Go back
       </Link>
       <h1>{item.original_title}</h1>
@@ -45,7 +46,9 @@ const MovieDetailsPage = props => {
           </Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
