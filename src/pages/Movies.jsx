@@ -37,6 +37,7 @@ const Movies = () => {
           type="text"
           placeholder="Search images and photos"
           onChange={updateInput}
+          value={movieInput}
         />
       </form>
       <ItemSearchCard arr={search} />

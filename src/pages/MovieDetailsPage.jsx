@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import FetchCard from 'components/Api/Api';
@@ -8,7 +8,8 @@ import { ImgCard } from './MoviDetailsPage.styled';
 const MovieDetailsPage = props => {
   const [item, setItem] = useState({});
   const { movieId } = useParams();
-
+  const location = useLocation();
+  console.log(location);
   useEffect(() => {
     FetchCard(`movie/${movieId}`)
       .then(data => data.json())
@@ -22,6 +23,7 @@ const MovieDetailsPage = props => {
 
   return (
     <div>
+      <Link to={location.state.from}>Back to</Link>
       <h1>{item.original_title}</h1>
       <ImgCard
         className="img__card"
