@@ -1,20 +1,20 @@
 import React from 'react';
 import { useEffect, useState, useMemo } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import FetchCard from 'components/Api/Api';
 import { ImgCast } from './Cast.styled';
 const Cast = () => {
   const [error, setError] = useState('');
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
-  const location = useLocation();
+
   useEffect(() => {
     FetchCard(`movie/${movieId}/credits`)
       .then(data => data.json())
       .then(resp => setCast(resp.cast))
       .catch(error => setError(error.message));
   }, [movieId]);
-
+  console.log(error);
   const render = useMemo(() => {
     return cast.map(({ profile_path, name, id }) => {
       return {
