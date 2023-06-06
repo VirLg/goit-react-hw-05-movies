@@ -33,7 +33,6 @@ const Cast = () => {
         </li>
 
         <li>{name}</li>
-        <li></li>
       </ul>
     );
   });

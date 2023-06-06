@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import FetchCard from 'components/Api/Api';
-import { ImgCard } from './MoviDetailsPage.styled';
+import { ImgCard, Flex } from './MoviDetailsPage.styled';
 
 const MovieDetailsPage = props => {
   const [item, setItem] = useState({});
@@ -31,17 +31,23 @@ const MovieDetailsPage = props => {
       <Link to={location.state?.from ?? '/'} state={location}>
         Go back
       </Link>
-      <h1>{item.original_title}</h1>
-      <ImgCard
-        className="img__card"
-        src={item.poster_path}
-        alt={item.original_title}
-      />
-      <h2>{item.vote_count}</h2>
-      <h3>{item.overview}</h3>
-      <h3>{item.release_date}</h3>
-      <p>{item.genres}</p>
-      <p>{item.popularity}</p>
+      <Flex>
+        <ImgCard
+          className="img__card"
+          src={item.poster_path}
+          alt={item.original_title}
+        />
+        <div>
+          <h1>
+            {item.original_title}(<span>{item.release_date}</span>)
+          </h1>
+          <h2>{item.vote_count}</h2>
+          <h3>{item.overview}</h3>
+          <p>{item.genres}</p>
+          <p>{item.popularity}</p>
+        </div>
+      </Flex>
+
       <ul>
         <li>
           <Link to="cast" state={{ from: location.state.from }}>
