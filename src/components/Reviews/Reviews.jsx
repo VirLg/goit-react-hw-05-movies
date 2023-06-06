@@ -14,7 +14,7 @@ const Reviews = () => {
 
       .catch(error => setError(error.message));
   }, [movieId]);
-  console.log(reviews);
+  console.log(error);
   return (
     <ul>
       {reviews.map(({ author, content, id }) => (
