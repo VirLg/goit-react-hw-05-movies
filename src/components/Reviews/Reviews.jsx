@@ -11,21 +11,21 @@ const Reviews = () => {
   useEffect(() => {
     FetchCard(`movie/${movieId}/reviews`)
       .then(data => data.json())
-      .then(resp =>
-        setReviews({
-          autor: `${resp.results.map(el => console.log(el))}`,
-        })
-      )
+      .then(({ results }) => setReviews(results))
+
       .catch(error => setError(error.message));
   }, [movieId]);
   console.log(reviews);
   return (
-    <div>
-      <ul>
-        <li>{reviews.author}</li>
-        <li>{reviews.id}</li>
-      </ul>
-    </div>
+    <ul>
+      {reviews.map(({ author, content, id }) => (
+        <li key={id}>
+          <h2>{author}</h2>
+          {reviews.author}
+          <p>{content}</p>
+        </li>
+      ))}
+    </ul>
   );
 };
 
