@@ -3,11 +3,11 @@ import { Suspense } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import FetchCard from 'components/Api/Api';
+import FetchCard from 'Api/Api';
 import { ImgCard, Flex } from './MoviDetailsPage.styled';
 
 const MovieDetailsPage = props => {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
 
@@ -25,7 +25,9 @@ const MovieDetailsPage = props => {
         })
       );
   }, [movieId]);
-
+  if (!item) {
+    return;
+  }
   return (
     <div>
       <Link to={location.state?.from ?? '/'} state={location}>

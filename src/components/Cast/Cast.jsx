@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import fetchCard from 'components/Api/Api';
+import fetchCard from 'Api/Api';
 import { ImgCast } from './Cast.styled';
 const Cast = () => {
   const [error, setError] = useState('');

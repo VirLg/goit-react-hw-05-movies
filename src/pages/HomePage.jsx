@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import ItemCard from '../components/ItemCard/ItemCard';
-import FetchCard from '../components/Api/Api';
+import FetchCard from '../Api/Api';
 
-const HomePage = data => {
+const HomePage = () => {
   const [filmList, setFilmList] = useState([]);
   const [error, setError] = useState(null);
 
@@ -12,7 +12,7 @@ const HomePage = data => {
       // .then(data => data.json())
       .then(resp => getFormatingArray(resp))
       .catch(error => setError(error.message));
-  }, [data]);
+  }, []);
 
   const getFormatingArray = resp => {
     console.log(resp);

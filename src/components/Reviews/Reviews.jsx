@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import FetchCard from '../../components/Api/Api';
+import FetchCard from '../../Api/Api';
 
 const Reviews = () => {
   const [error, setError] = useState('');

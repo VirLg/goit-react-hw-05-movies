@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 
 import ItemCard from './ItemCard/ItemCard';
-import Api from './Api/Api';
+import Api from '../Api/Api';
 import SearchForm from './SearchForm/SearchForm';
 export const RenderContext = createContext();
 

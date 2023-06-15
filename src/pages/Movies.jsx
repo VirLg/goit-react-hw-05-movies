@@ -1,7 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
-import { fetchSearchCard } from 'components/Api/Api';
+import { fetchSearchCard } from 'Api/Api';
 import { useState } from 'react';
 import ItemSearchCard from 'components/ItemCard/ItemSearchCard';
+import { useEffect } from 'react';
 
 const Movies = () => {
   const [error, setError] = useState(null);
@@ -15,7 +16,7 @@ const Movies = () => {
     setSearchParams({ movieInput: evt.target.value });
   };
   const movieInput = searchParams.get('movieInput') ?? '';
-
+  useEffect(() => {}, [searchParams]);
   const handleSubmit = evt => {
     evt.preventDefault();
     fetchSearchCard(movieInput)
