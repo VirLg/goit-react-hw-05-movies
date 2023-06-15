@@ -9,7 +9,7 @@ const Reviews = () => {
   const { movieId } = useParams();
   useEffect(() => {
     FetchCard(`movie/${movieId}/reviews`)
-      .then(data => data.json())
+      // .then(data => data.json())
       .then(({ results }) => setReviews(results))
 
       .catch(error => setError(error.message));

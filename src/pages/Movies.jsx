@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import FetchSearchCard from 'components/Api/ApiSearch';
+import { fetchSearchCard } from 'components/Api/Api';
 import { useState } from 'react';
 import ItemSearchCard from 'components/ItemCard/ItemSearchCard';
 
@@ -18,7 +18,7 @@ const Movies = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    FetchSearchCard(movieInput)
+    fetchSearchCard(movieInput)
       .then(data => data.json())
       .then(resp => setSearch(resp.results))
       .catch(error => setError(error.message));

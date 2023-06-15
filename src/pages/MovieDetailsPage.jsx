@@ -13,7 +13,7 @@ const MovieDetailsPage = props => {
 
   useEffect(() => {
     FetchCard(`movie/${movieId}`)
-      .then(data => data.json())
+      // .then(data => data.json())
       .then(resp =>
         setItem({
           poster_path: `https://image.tmdb.org/t/p/w500${resp.poster_path}`,
