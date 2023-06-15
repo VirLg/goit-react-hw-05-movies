@@ -10,7 +10,6 @@ const Cast = () => {
 
   useEffect(() => {
     fetchCard(`movie/${movieId}/credits`)
-      // .then(data => data.json())
       .then(resp => setCast(resp.cast))
       .catch(error => setError(error.message));
   }, [movieId]);

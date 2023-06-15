@@ -9,7 +9,6 @@ const HomePage = () => {
 
   useEffect(() => {
     FetchCard(`trending/all/day`)
-      // .then(data => data.json())
       .then(resp => getFormatingArray(resp))
       .catch(error => setError(error.message));
   }, []);
