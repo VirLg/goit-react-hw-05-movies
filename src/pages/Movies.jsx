@@ -16,13 +16,14 @@ const Movies = () => {
     setSearchParams({ movieInput: evt.target.value });
   };
   const movieInput = searchParams.get('movieInput') ?? '';
-  useEffect(() => {}, [searchParams]);
-  const handleSubmit = evt => {
-    evt.preventDefault();
+  useEffect(() => {
     fetchSearchCard(movieInput)
       .then(data => data.json())
       .then(resp => setSearch(resp.results))
       .catch(error => setError(error.message));
+  }, [movieInput, searchParams]);
+  const handleSubmit = evt => {
+    evt.preventDefault();
   };
 
   return (
