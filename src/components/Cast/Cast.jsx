@@ -3,6 +3,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchCard from 'Api/Api';
 import { ImgCast } from './Cast.styled';
+import Nora from '../../pages/Nora.jpg';
 const Cast = () => {
   const [error, setError] = useState('');
   const [cast, setCast] = useState([]);
@@ -15,9 +16,12 @@ const Cast = () => {
   }, [movieId]);
   console.log(error);
   const render = useMemo(() => {
-    return cast.map(({ profile_path, name, id }) => {
+    return cast.map(({ profile_path = `{Nora}`, name, id }) => {
+      console.log(Nora);
       return {
-        profile_path: `https://image.tmdb.org/t/p/w500${profile_path}??''`,
+        profile_path: profile_path
+          ? `https://image.tmdb.org/t/p/w500${profile_path}`
+          : Nora,
         name,
         id,
       };
