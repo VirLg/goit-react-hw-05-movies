@@ -9,6 +9,7 @@ const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchArr, setSearchArr] = useState([]);
   const [error, setError] = useState('');
+
   const search = item => {
     if (item === '') {
       Notify.failure('Sorry, this search not valide.');
@@ -24,6 +25,7 @@ const Movies = () => {
 
   return (
     <>
+      <h2>{error}</h2>
       <Form onSubmit={search} />
       <ItemSearchCard arr={searchArr} />
     </>
