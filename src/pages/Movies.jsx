@@ -3,46 +3,25 @@ import { fetchSearchCard } from 'Api/Api';
 import { useState } from 'react';
 import ItemSearchCard from 'components/ItemCard/ItemSearchCard';
 import { useEffect } from 'react';
+import { Form } from '../components/Form/Form';
 
 const Movies = () => {
-  const [error, setError] = useState(null);
-  const [search, setSearch] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState('');
 
-  const updateInput = evt => {
-    if (evt.target.value === '') {
-      return setSearchParams({});
-    }
-    setSearchParams({ movieInput: evt.target.value });
+  const search = item => {
+    setQuery(item);
   };
-  const movieInput = searchParams.get('movieInput') ?? '';
   useEffect(() => {
-    fetchSearchCard(movieInput)
+    fetchSearchCard(query)
       .then(data => data.json())
-      .then(resp => setSearch(resp.results))
-      .catch(error => setError(error.message));
-  }, [movieInput, searchParams]);
-  const handleSubmit = evt => {
-    evt.preventDefault();
-  };
+      .then(resp => console.log(resp));
+    // .catch(error => setError(error.message));
+  });
 
   return (
     <>
-      {error && <h1>{error}</h1>}
-      <form className="form" onSubmit={handleSubmit}>
-        <button type="submit" className="button">
-          <span className="button-label">Search</span>
-        </button>
-
-        <input
-          className="input"
-          type="text"
-          placeholder="Search images and photos"
-          onChange={updateInput}
-          value={movieInput}
-        />
-      </form>
-      <ItemSearchCard arr={search} />
+      <Form onSubmit={search} />
+      <ItemSearchCard />
     </>
   );
 };
