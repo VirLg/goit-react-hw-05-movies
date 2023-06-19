@@ -1,14 +1,18 @@
-import { fetchSearchCard } from 'Api/Api';
 import { useState } from 'react';
-import ItemSearchCard from 'components/ItemCard/ItemSearchCard';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useEffect } from 'react';
+import ItemSearchCard from 'components/ItemCard/ItemSearchCard';
 import { Form } from '../components/Form/Form';
+import { fetchSearchCard } from 'Api/Api';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchArr, setSearchArr] = useState([]);
   const [error, setError] = useState('');
   const search = item => {
+    if (item === '') {
+      Notify.failure('Sorry, this search not valide.');
+    }
     setQuery(item);
   };
   useEffect(() => {
@@ -16,7 +20,7 @@ const Movies = () => {
       .then(data => data.json())
       .then(resp => setSearchArr(resp.results))
       .catch(error => setError(error.message));
-  });
+  }, [query]);
 
   return (
     <>
