@@ -1,4 +1,3 @@
-import { useSearchParams } from 'react-router-dom';
 import { fetchSearchCard } from 'Api/Api';
 import { useState } from 'react';
 import ItemSearchCard from 'components/ItemCard/ItemSearchCard';
@@ -8,14 +7,15 @@ import { Form } from '../components/Form/Form';
 const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchArr, setSearchArr] = useState([]);
+  const [error, setError] = useState('');
   const search = item => {
     setQuery(item);
   };
   useEffect(() => {
     fetchSearchCard(query)
       .then(data => data.json())
-      .then(resp => setSearchArr(resp.results));
-    // .catch(error => setError(error.message));
+      .then(resp => setSearchArr(resp.results))
+      .catch(error => setError(error.message));
   });
 
   return (
