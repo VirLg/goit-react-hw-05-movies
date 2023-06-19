@@ -7,21 +7,21 @@ import { Form } from '../components/Form/Form';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
-
+  const [searchArr, setSearchArr] = useState([]);
   const search = item => {
     setQuery(item);
   };
   useEffect(() => {
     fetchSearchCard(query)
       .then(data => data.json())
-      .then(resp => console.log(resp));
+      .then(resp => setSearchArr(resp.results));
     // .catch(error => setError(error.message));
   });
 
   return (
     <>
       <Form onSubmit={search} />
-      <ItemSearchCard />
+      <ItemSearchCard arr={searchArr} />
     </>
   );
 };
