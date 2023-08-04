@@ -8,7 +8,7 @@ const HomePage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    FetchCard(`trending/all/day`)
+    FetchCard(`trending/movie/day`)
       .then(resp => getFormatingArray(resp))
       .catch(error => setError(error.message));
   }, []);

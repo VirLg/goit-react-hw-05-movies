@@ -1,5 +1,5 @@
 const BASE_URL = 'api.themoviedb.org/3';
-const API_KEY = 'd0d7894e72847cf4bdccbd92204adc61';
+const API_KEY = 'c36fe88d7e0d6b58145a986005d5f8b7';
 const fetchCard = async props => {
   try {
     const data = await fetch(
